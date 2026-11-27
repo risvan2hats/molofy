@@ -1,6 +1,6 @@
 
 <script setup>
-import { Head, Link, usePage } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import GuestLayout from '@/Common/Layouts/GuestLayout.vue';
 
 defineProps({
@@ -9,8 +9,6 @@ defineProps({
         default: () => [],
     },
 });
-
-const page = usePage();
 
 const formatDuration = (minutes) => {
     const hours = Math.floor(minutes / 60);

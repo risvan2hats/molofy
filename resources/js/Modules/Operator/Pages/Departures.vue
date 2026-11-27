@@ -1,5 +1,9 @@
 <script setup>
 import { Head, router } from '@inertiajs/vue3';
+import BaseLoader from '@/Common/Components/BaseLoader.vue';
+import { useInertiaLoading } from '@/Common/Composables/useInertiaLoading';
+
+const { isLoading } = useInertiaLoading();
 
 defineProps({
     departures: {
@@ -19,6 +23,7 @@ const formatDate = (date) => new Date(date).toLocaleString();
     <Head title="Operator Departures" />
 
     <div class="min-h-screen bg-gray-50">
+        <BaseLoader v-if="isLoading" overlay :text="$t('common.loading')" />
         <header class="border-b border-gray-200 bg-white px-6 py-4">
             <div class="mx-auto flex max-w-5xl items-center justify-between">
                 <div>

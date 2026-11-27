@@ -1,7 +1,11 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import BaseLoader from '@/Common/Components/BaseLoader.vue';
 import LanguageSwitcher from '@/Common/Components/LanguageSwitcher.vue';
+import { useInertiaLoading } from '@/Common/Composables/useInertiaLoading';
+
+const { isLoading } = useInertiaLoading();
 </script>
 
 <template>
@@ -40,5 +44,7 @@ import LanguageSwitcher from '@/Common/Components/LanguageSwitcher.vue';
                 All rights reserved.
             </p>
         </footer>
+
+        <BaseLoader v-if="isLoading" overlay :text="$t('common.loading')" />
     </div>
 </template>

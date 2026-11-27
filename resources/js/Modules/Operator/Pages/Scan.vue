@@ -3,6 +3,7 @@ import { Head, router } from '@inertiajs/vue3';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import axios from 'axios';
 import { onMounted, onBeforeUnmount, ref } from 'vue';
+import BaseLoader from '@/Common/Components/BaseLoader.vue';
 
 const props = defineProps({
     departure: {
@@ -189,12 +190,11 @@ onBeforeUnmount(() => {
 
                 <div id="qr-reader" class="mt-5 w-full overflow-hidden"></div>
 
-                <p v-if="loading" class="mt-4 text-center text-sm text-gray-500">
-                    Verifying booking...
-                </p>
+                <BaseLoader v-if="loading" text="Verifying booking..." />
             </div>
 
             <div v-else class="rounded-xl border border-gray-200 bg-white p-6">
+                <BaseLoader v-if="loading" overlay text="Updating boarding status..." />
                 <div class="flex flex-wrap items-start justify-between gap-3">
                     <div>
                         <p class="text-sm text-gray-500">Booking reference</p>

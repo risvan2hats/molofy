@@ -1,8 +1,11 @@
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3';
+import BaseLoader from '@/Common/Components/BaseLoader.vue';
 import LanguageSwitcher from '@/Common/Components/LanguageSwitcher.vue';
+import { useInertiaLoading } from '@/Common/Composables/useInertiaLoading';
 
 const page = usePage();
+const { isLoading } = useInertiaLoading();
 
 const navigation = [
     {
@@ -68,5 +71,7 @@ const isActive = (routeName) => {
         <main class="mx-auto max-w-7xl px-6 py-8">
             <slot />
         </main>
+
+        <BaseLoader v-if="isLoading" overlay :text="$t('common.loading')" />
     </div>
 </template>
