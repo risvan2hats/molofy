@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Operator\Controllers\OperatorAssignmentController;
 use App\Modules\Operator\Controllers\OperatorAuthController;
 use App\Modules\Operator\Controllers\OperatorCheckInController;
 use App\Modules\Operator\Http\Middleware\EnsureOperatorAuthenticated;
@@ -25,3 +26,14 @@ Route::prefix('operator')->name('operator.')->group(function () {
         Route::post('/departures/{departure}/guests/{guest}/board', [OperatorCheckInController::class, 'boardGuest'])->name('guest.board');
     });
 });
+
+Route::middleware(['auth', 'verified'])
+    ->prefix('admin/operators')
+    ->name('admin.operators.')
+    ->group(function () {
+        Route::get('/', [OperatorAssignmentController::class, 'index'])
+            ->name('index');
+
+        Route::put('/{operator}/departures', [OperatorAssignmentController::class, 'sync'])
+            ->name('departures.sync');
+    });

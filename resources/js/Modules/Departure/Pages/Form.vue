@@ -16,6 +16,10 @@ const props = defineProps({
         type: Array,
         default: () => [],
     },
+    operators: {
+        type: Array,
+        default: () => [],
+    },
 });
 
 const isEditing = computed(() => Boolean(props.departure));
@@ -39,6 +43,7 @@ const form = useForm({
     meeting_point: props.departure?.meeting_point ?? '',
     meeting_instructions: props.departure?.meeting_instructions ?? '',
     status: props.departure?.status ?? 'scheduled',
+    operator_ids: props.departure?.operators?.map((op) => op.id) ?? [],
 });
 
 const submit = () => {
@@ -207,6 +212,32 @@ const submit = () => {
 
                     <p v-if="form.errors.status" class="mt-1 text-sm text-red-600">
                         {{ form.errors.status }}
+                    </p>
+                </div>
+
+                <div v-if="operators.length">
+                    <label class="mb-2 block text-sm font-medium text-gray-700">
+                        Assigned Operators
+                    </label>
+
+                    <div class="grid gap-2 sm:grid-cols-2">
+                        <label
+                            v-for="operator in operators"
+                            :key="operator.id"
+                            class="flex cursor-pointer items-center gap-2.5 rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm hover:bg-gray-50"
+                        >
+                            <input
+                                v-model="form.operator_ids"
+                                type="checkbox"
+                                :value="operator.id"
+                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                            />
+                            <span class="font-medium text-gray-800">{{ operator.name }}</span>
+                        </label>
+                    </div>
+
+                    <p v-if="form.errors.operator_ids" class="mt-1 text-sm text-red-600">
+                        {{ form.errors.operator_ids }}
                     </p>
                 </div>
 

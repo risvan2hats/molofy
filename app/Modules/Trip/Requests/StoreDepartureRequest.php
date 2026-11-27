@@ -46,6 +46,8 @@ class StoreDepartureRequest extends FormRequest
                 'required',
                 Rule::in(['scheduled', 'cancelled', 'completed']),
             ],
+            'operator_ids' => ['nullable', 'array'],
+            'operator_ids.*' => ['integer', 'exists:operators,id'],
         ];
     }
 }

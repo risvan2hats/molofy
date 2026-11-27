@@ -4,6 +4,7 @@ namespace App\Modules\Trip\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Boat\Models\Boat;
+use App\Modules\Operator\Models\Operator;
 use App\Modules\Trip\Models\Departure;
 use App\Modules\Trip\Models\Trip;
 use App\Modules\Trip\Requests\StoreDepartureRequest;
@@ -37,6 +38,9 @@ class DepartureController extends Controller
             'boats' => Boat::query()
                 ->orderBy('name')
                 ->get(),
+            'operators' => Operator::where('is_active', true)
+                ->orderBy('name')
+                ->get(['id', 'name', 'email']),
         ]);
     }
 
@@ -44,10 +48,13 @@ class DepartureController extends Controller
         StoreDepartureRequest $request
     ): RedirectResponse {
         $data = $request->validated();
+        $operatorIds = $data['operator_ids'] ?? [];
+        unset($data['operator_ids']);
 
         $this->validateAvailability($data);
 
-        Departure::create($data);
+        $departure = Departure::create($data);
+        $departure->operators()->sync($operatorIds);
 
         return redirect()
             ->route('departures.index')
@@ -56,6 +63,8 @@ class DepartureController extends Controller
 
     public function edit(Departure $departure): Response
     {
+        $departure->load('operators:id');
+
         return Inertia::render('Departure/Pages/Form', [
             'departure' => $departure,
             'trips' => Trip::where('is_active', true)
@@ -64,6 +73,9 @@ class DepartureController extends Controller
             'boats' => Boat::query()
                 ->orderBy('name')
                 ->get(),
+            'operators' => Operator::where('is_active', true)
+                ->orderBy('name')
+                ->get(['id', 'name', 'email']),
         ]);
     }
 
@@ -72,10 +84,13 @@ class DepartureController extends Controller
         Departure $departure
     ): RedirectResponse {
         $data = $request->validated();
+        $operatorIds = $data['operator_ids'] ?? [];
+        unset($data['operator_ids']);
 
         $this->validateAvailability($data, $departure);
 
         $departure->update($data);
+        $departure->operators()->sync($operatorIds);
 
         return redirect()
             ->route('departures.index')

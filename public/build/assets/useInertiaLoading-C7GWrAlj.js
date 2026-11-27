@@ -1,1 +1,0 @@
-import{E as e,P as t,o as n}from"./app-B8YOmc8q.js";function r(){let r=t(!1),i=null,a=n.on(`start`,()=>{clearTimeout(i),i=setTimeout(()=>{r.value=!0},120)}),o=n.on(`finish`,()=>{clearTimeout(i),r.value=!1});return e(()=>{clearTimeout(i),a(),o()}),{isLoading:r}}export{r as t};

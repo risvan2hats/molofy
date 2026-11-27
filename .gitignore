@@ -1,53 +1,101 @@
-
+# ------------------------------
 # Environment files
+# ------------------------------
 .env
 .env.*
 !.env.example
+.env.backup
+.env.production
 
+# ------------------------------
 # Logs
+# ------------------------------
 *.log
 
+# ------------------------------
 # OS generated files
+# ------------------------------
 .DS_Store
 Thumbs.db
+Desktop.ini
 
+# ------------------------------
 # IDE and editor files
+# ------------------------------
 /.idea
 /.vscode
 /.nova
 /.zed
 /.cursor/
+/.fleet
 /.phpactor.json
+/.phpstorm.meta.php
 _ide_helper.php
+_ide_helper_models.php
+*.swp
+*.swo
 
-# Codex
+# ------------------------------
+# AI tooling
+# ------------------------------
 /.codex
 
+# ------------------------------
 # PHP / Composer
+# ------------------------------
 /vendor
 /auth.json
-
-# PHPUnit
-/.phpunit.cache
+.php-cs-fixer.cache
+.phpunit.cache
 .phpunit.result.cache
+/.phpunit.cache
+/.phpstan.cache
+/.phpunit.xml.local
 
+# ------------------------------
 # Node / NPM
+# ------------------------------
 /node_modules
-/npm-debug.log*
-/yarn-debug.log*
-/pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+.npm/
+.eslintcache
+*.tsbuildinfo
+/.vite
 
-# Laravel generated files
+# ------------------------------
+# Vite / frontend build
+# ------------------------------
+# Built assets are committed for now so Railway can serve them.
+# Once Railway runs `npm ci && npm run build` itself, uncomment this:
+# /public/build
 /public/hot
+/dist
+
+# ------------------------------
+# Laravel generated files
+# ------------------------------
 /public/storage
 /storage/*.key
 /storage/pail
+/storage/debugbar
 /bootstrap/cache/*.php
 
+# ------------------------------
 # Laravel local development
+# ------------------------------
 Homestead.json
 Homestead.yaml
+/database/*.sqlite
+/database/*.sqlite-journal
+/database/*.sqlite-shm
+/database/*.sqlite-wal
 
-# Local backups
-.env.backup
-.env.production
+# ------------------------------
+# Local backups / temp
+# ------------------------------
+*.bak
+*.tmp

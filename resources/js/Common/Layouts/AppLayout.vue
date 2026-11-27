@@ -27,7 +27,11 @@ const navigation = [
     {
         label: 'navigation.departures',
         route: 'departures.index',
-    }
+    },
+    {
+        label: 'navigation.operator',
+        route: 'admin.operators.index',
+    },
 ];
 
 const availableNavigation = navigation.filter((item) =>
