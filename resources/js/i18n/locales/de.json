@@ -1,0 +1,38 @@
+{
+    "app": {
+        "name": "Molofy",
+        "dashboard": "Dashboard",
+        "welcome": "Willkommen bei Molofy"
+    },
+    "navigation": {
+        "home": "Startseite",
+        "boats": "Boote",
+        "trips": "Ausflüge",
+        "bookings": "Buchungen",
+        "agents": "Bootsagenten",
+        "settings": "Einstellungen",
+        "departures": "Abfahrten",
+        "logout": "Abmelden",
+        "operator": "Betreiber"
+    },
+    "common": {
+        "save": "Speichern",
+        "cancel": "Abbrechen",
+        "edit": "Bearbeiten",
+        "delete": "Löschen",
+        "search": "Suchen",
+        "filter": "Filtern",
+        "loading": "Wird geladen...",
+        "actions": "Aktionen",
+        "no_records": "Keine Datensätze gefunden"
+    },
+    "booking": {
+        "title": "Buchungen",
+        "booking_reference": "Buchungsnummer",
+        "customer": "Kunde",
+        "guests": "Gäste",
+        "status": "Status",
+        "completed": "Abgeschlossen",
+        "pending": "Ausstehend"
+    }
+}
