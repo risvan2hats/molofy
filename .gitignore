@@ -38,6 +38,7 @@ _ide_helper.php
 /pnpm-debug.log*
 
 # Laravel generated files
+/public/build
 /public/hot
 /public/storage
 /storage/*.key
