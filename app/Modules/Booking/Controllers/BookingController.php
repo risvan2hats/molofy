@@ -149,12 +149,12 @@ class BookingController extends Controller
             'departure.operators',
         ]);
 
-        try {
-            Mail::to($booking->customer->email)
-                ->send(new BookingConfirmedMail($booking));
-        } catch (\Throwable $exception) {
-            report($exception);
-        }
+        // try {
+        //     Mail::to($booking->customer->email)
+        //         ->send(new BookingConfirmedMail($booking));
+        // } catch (\Throwable $exception) {
+        //     report($exception);
+        // }
 
         return redirect()->route('booking.confirmation', [
             'token' => $booking->confirmation_token,
