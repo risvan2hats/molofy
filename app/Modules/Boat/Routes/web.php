@@ -20,6 +20,9 @@ Route::middleware(['auth'])
         Route::get('/{boat}', [BoatController::class, 'show'])
             ->name('show');
 
+        Route::get('/{boat}/edit', [BoatController::class, 'edit'])
+            ->name('edit');
+
         Route::put('/{boat}', [BoatController::class, 'update'])
             ->name('update');
 
