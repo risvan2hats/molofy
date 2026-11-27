@@ -14,7 +14,7 @@ class OperatorSeeder extends Seeder
             ['email' => 'operator1@molofy.com'],
             [
                 'name' => 'Operator 1',
-                'pin' => Hash::make('123456'),
+                'pin_hash' => Hash::make('123456'),
             ]
         );
     }
